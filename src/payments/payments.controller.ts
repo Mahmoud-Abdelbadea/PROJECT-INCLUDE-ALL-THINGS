@@ -26,22 +26,23 @@ export class PaymentsController {
     return session
   }
 
-  // @Post('webhook')
-  // async handleWebhook(
-  //   @Req() req: Request,
-  //   @Headers('stripe-signature') signature: string,
-  // ) {
-  //   try {
-  //     const event = await this.stripeService.handleWebhook(
-  //       signature,
-  //       req['rawBody'],
-  //     );
-  //     // Handle event types (e.g., payment success)
-  //     console.log('Received event:', event.type);
-  //     return { received: true };
-  //   } catch (err) {
-  //     console.error('Webhook error:', err.message);
-  //     return { error: err.message };
-  //   }
-  // }
+  @Post('webhook')
+  async handleWebhook(
+    @Req() req: Request,
+    @Headers('stripe-signature') signature: string,
+  ) {
+    try {
+      const event = await this.stripeService.handleWebhook(
+        signature,
+        req['rawBody'],
+      );
+      console.log('event')
+      // Handle event types (e.g., payment success)
+      console.log('Received event:', event.type);
+      return { received: true };
+    } catch (err) {
+      console.error('Webhook error:', err.message);
+      return { error: err.message };
+    }
+  }
 }

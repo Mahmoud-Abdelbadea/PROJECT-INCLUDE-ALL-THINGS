@@ -40,11 +40,11 @@ export class PaymentsService {
     return this.stripe.customers.create({ email });
   }
 
-  // async handleWebhook(signature: string, payload: Buffer) {
-  //   return this.stripe.webhooks.constructEvent(
-  //     payload,
-  //     signature,
-  //     process.env.STRIPE_WEBHOOK_SECRET as string,
-  //   );
-  // }
+  async handleWebhook(signature: string, payload: Buffer) {
+    return this.stripe.webhooks.constructEvent(
+      payload,
+      signature,
+      process.env.STRIPE_WEBHOOK_SECRET as string,
+    );
+  }
 }
