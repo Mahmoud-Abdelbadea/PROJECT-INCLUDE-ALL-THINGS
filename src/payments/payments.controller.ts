@@ -36,7 +36,7 @@ export class PaymentsController {
         signature,
         req['rawBody'],
       );
-      console.log('event')
+      console.log('event>>>>>>>>>>>>>>>>>>>>',event,JSON.stringify(event))
       // Handle event types (e.g., payment success)
       console.log('Received event:', event.type);
       return { received: true };
