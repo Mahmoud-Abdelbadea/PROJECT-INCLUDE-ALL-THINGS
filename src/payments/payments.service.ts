@@ -41,16 +41,11 @@ export class PaymentsService {
   }
 
   async handleWebhook(signature: string, payload: Buffer) {
+    console.log("hello>>>>>>>>>>>>>>>>")
     return this.stripe.webhooks.constructEvent(
       payload,
       signature,
       process.env.STRIPE_WEBHOOK_SECRET as string,
     );
   }
-
-
-
-
-
-  
 }
