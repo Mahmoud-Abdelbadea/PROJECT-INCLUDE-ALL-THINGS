@@ -23,7 +23,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(json({ limit: '10mb' }));
   app.use(urlencoded({ extended: true, limit: '10mb' }));
-  app.use('/payments/webhook', express.raw({ type: '*/*' }));
+  app.use('/payments/webhook', express.raw({ type: 'application/json' }));
   // console.log('app',app);
   await app.listen(process.env.PORT ?? 3000);
 }

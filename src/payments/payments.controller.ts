@@ -35,13 +35,12 @@ export class PaymentsController {
     try {
       console.log(">>>>>>>>>>>>>>>>signature",signature)
       console.log(">>>>>>>>>>>>>rawBody",req['rawBody'])
-      console.log("req>>>>>>>>>>>>>",req.body)
+      console.log(">>>>>>>>>>>>>>>>.body",body)
       
       const event = await this.stripeService.handleWebhook(
         signature,
         req['rawBody'],
       );
-      console.log('event>>>>>>>>>>>>>>>>>>>>',event,JSON.stringify(event))
       // Handle event types (e.g., payment success)
       console.log('Received event:', event.type);
       return { received: true };
