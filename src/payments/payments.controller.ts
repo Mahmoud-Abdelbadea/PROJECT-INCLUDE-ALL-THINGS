@@ -12,6 +12,7 @@ import {
 import { PaymentsService } from './payments.service';
 import { CreatePaymentDto } from './dto/create-payment.dto';
 import { UpdatePaymentDto } from './dto/update-payment.dto';
+import getRawBody from 'raw-body';
 
 @Controller('payments')
 export class PaymentsController {
@@ -34,7 +35,7 @@ export class PaymentsController {
     try {
       console.log(">>>>>>>>>>>>>>>>signature",signature)
       console.log(">>>>>>>>>>>>>rawBody",req['rawBody'])
-   
+      console.log("req>>>>>>>>>>>>>",req)
       
       const event = await this.stripeService.handleWebhook(
         signature,
