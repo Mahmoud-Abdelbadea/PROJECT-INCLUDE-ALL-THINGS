@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { json, urlencoded } from 'express';
+import * as express from 'express';
 // const p = Promise.resolve(new Date()).then((res) => {console.log(res.toISOString())});
 // console.log(p);
 // console.log(new Date().getTimezoneOffset());
@@ -20,8 +21,9 @@ console.log(new Date().getHours());
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  // app.use(json({ limit: '10mb' }));
-  // app.use(urlencoded({ extended: true, limit: '10mb' }));
+  app.use(json({ limit: '10mb' }));
+  app.use(urlencoded({ extended: true, limit: '10mb' }));
+  app.use('/payments/webhook', express.raw({ type: '*/*' }));
   // console.log('app',app);
   await app.listen(process.env.PORT ?? 3000);
 }
