@@ -35,7 +35,7 @@ export class PaymentsController {
     try {
       console.log(">>>>>>>>>>>>>>>>signature",signature)
       console.log(">>>>>>>>>>>>>rawBody",req['rawBody'])
-      console.log("req>>>>>>>>>>>>>",req)
+      console.log("req>>>>>>>>>>>>>",req.body)
       
       const event = await this.stripeService.handleWebhook(
         signature,
