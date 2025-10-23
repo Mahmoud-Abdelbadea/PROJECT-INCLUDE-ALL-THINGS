@@ -32,6 +32,10 @@ export class PaymentsController {
     @Headers('stripe-signature') signature: string,
   ) {
     try {
+      console.log(">>>>>>>>>>>>>>>>signature",signature)
+      console.log(">>>>>>>>>>>>>rawBody",req['rawBody'])
+   
+      
       const event = await this.stripeService.handleWebhook(
         signature,
         req['rawBody'],
