@@ -43,6 +43,7 @@ export class PaymentsController {
       );
       // Handle event types (e.g., payment success)
       console.log('Received event:', event.type);
+      console.log('>>>>>>>>>>',event)
       return { received: true };
     } catch (err) {
       console.error('Webhook error:', err.message);
